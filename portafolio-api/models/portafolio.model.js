@@ -934,8 +934,8 @@ const addEmpresa = (portafolioData) => {
 
 
     // EN ESTE PUNTO ES IMPORTANTE HACER LA QUERY A LA TABLA CORRESPONDIENTE Y LOS VALORES CORRESPONDIENTES y tipos de datos.
-    const query = ` INSERT INTO [dbo].[empresa] (id_empresa, nombre_empresa, rut_empresa, id_rubro, id_item, id_contrato, id_servicio, id_detalle_usuario)
-                    VALUES (@id_empresa, @rut_empresa, @nombre_empresa, @id_rubro, @id_item, @id_contrato, @id_servicio, @id_detalle_usuario)
+    const query = ` INSERT INTO [dbo].[empresa] (id_empresa, nombre_empresa, rut_empresa, id_rubro,  id_contrato, id_servicio, id_detalle_usuario)
+                    VALUES (@id_empresa,  @nombre_empresa, @rut_empresa, @id_rubro,  @id_contrato, @id_servicio, @id_detalle_usuario)
                     
                     `;
                     //FIN DE LA QUERY
@@ -944,7 +944,6 @@ const addEmpresa = (portafolioData) => {
                         {name: 'nombre_empresa', type: TYPES.NVarChar, value: nombre_empresa},
                         {name: 'rut_empresa', type: TYPES.NVarChar, value: rut_empresa},
                         {name: 'id_rubro', type: TYPES.NVarChar, value: id_rubro},
-                        {name: 'id_item', type: TYPES.NVarChar, value: id_item},
                         {name: 'id_contrato', type: TYPES.NVarChar, value: id_contrato},
                         {name: 'id_servicio', type: TYPES.NVarChar, value: id_servicio},
                         {name: 'id_detalle_usuario', type: TYPES.NVarChar, value: id_detalle_usuario},
