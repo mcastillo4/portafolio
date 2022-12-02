@@ -332,6 +332,121 @@ portafolioRoute.get('/all/contrato/:id_contrato', async(req, res) => {
 
 });
 
+portafolioRoute.get('/all/detalleservicio/:id_detalle_servicio', async(req, res) => {
+    const {id_detalle_servicio: id_detalle_servicio} = req.params;
+    portafolioModel.getByIDDetalleServicio(id_detalle_servicio)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+portafolioRoute.get('/all/detalleusuario/:id_detalle_usuario', async(req, res) => {
+    const {id_detalle_usuario: id_detalle_usuario} = req.params;
+    portafolioModel.getByIDDetalle_usuario(id_detalle_usuario)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+portafolioRoute.get('/all/direccion/:id_direccion', async(req, res) => {
+    const {id_direccion: id_direccion} = req.params;
+    portafolioModel.getByIDDireccion(id_direccion)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+portafolioRoute.get('/all/empresa/:id_empresa', async(req, res) => {
+    const {id_empresa: id_empresa} = req.params;
+    portafolioModel.getByIDEmpresa(id_empresa)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+portafolioRoute.get('/all/especialidadprofesional/:id_especialidad_profesional', async(req, res) => {
+    const {id_especialidad_profesional: id_especialidad_profesional} = req.params;
+    portafolioModel.getByIDEspecialidadProfesional(id_especialidad_profesional)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
 portafolioRoute.get('/all/estado/:id_estado', async(req, res) => {
     const {id_estado: id_estado} = req.params;
     portafolioModel.getByIDEstado(id_estado)
@@ -352,6 +467,222 @@ portafolioRoute.get('/all/estado/:id_estado', async(req, res) => {
     });
 
 });
+
+
+
+
+
+portafolioRoute.get('/all/item/:id_item', async(req, res) => {
+    const {id_item: id_item} = req.params;
+    portafolioModel.getByIDItem(id_item)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+portafolioRoute.get('/all/mensualidad/:id_mensualidad', async(req, res) => {
+    const {id_mensualidad: id_mensualidad} = req.params;
+    portafolioModel.getByIDMensualidad(id_mensualidad)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+portafolioRoute.get('/all/pais/:id_pais', async(req, res) => {
+    const {id_pais: id_pais} = req.params;
+    portafolioModel.getByIDPais(id_pais)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+portafolioRoute.get('/all/region/:id_region', async(req, res) => {
+    const {id_region: id_region} = req.params;
+    portafolioModel.getByIDRegion(id_region)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+portafolioRoute.get('/all/rol/:id_rol', async(req, res) => {
+    const {id_rol: id_rol} = req.params;
+    portafolioModel.getByIDRol(id_rol)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+portafolioRoute.get('/all/rubro/:id_rubro', async(req, res) => {
+    const {id_rubro: id_rubro} = req.params;
+    portafolioModel.getByIDRubro(id_rubro)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+portafolioRoute.get('/all/servicio/:id_servicio', async(req, res) => {
+    const {id_servicio: id_servicio} = req.params;
+    portafolioModel.getByIDServicio(id_servicio)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+portafolioRoute.get('/all/tiposervicio/:id_tipo_servicio', async(req, res) => {
+    const {id_tipo_servicio: id_tipo_servicio} = req.params;
+    portafolioModel.getByIDTipoServicio(id_tipo_servicio)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+portafolioRoute.get('/all/usuario/:id_usuario', async(req, res) => {
+    const {id_usuario: id_usuario} = req.params;
+    portafolioModel.getByIDUsuario(id_usuario)
+    .then(data => {
+        if(data.length > 0 ){
+        res.status(200).json({data: { ...data[0]}});
+
+    }
+
+    else{
+        res.status(404).json({error: 'No se encuentra esta tarea'});
+        }
+
+    })
+
+    .catch(error =>{
+        res.status(500).json({error});
+    });
+
+});
+
+
+
 
 
 
@@ -522,21 +853,65 @@ portafolioRoute.post('/add/contrato', async(req, res) => {
 });
 
 
+//DETALLESERVICIO
+//DETALLEUSUARIO
+//DIRECCION
+//EMPRESA
+
+portafolioRoute.post('/add/empresa', async(req, res) => {
+    const id_empresa = uuidv4();
+    const id_rubro = uuidv4();
+    const id_contrato = uuidv4();
+    const id_servicio = uuidv4();
+    const id_detalle_usuario = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_empresa,
+        rut_empresa
+        
+
+    } = req.body; 
+
+    portafolioModel.addContrato({
+        id_empresa,
+        nombre_empresa,
+        rut_empresa,
+        id_rubro,
+        id_contrato,
+        id_servicio,
+        id_detalle_usuario,
+    
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_empresa,
+                nombre_empresa,
+                rut_empresa,
+                id_rubro,
+                id_contrato,
+                id_servicio,
+                id_detalle_usuario,
+            
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//ESPECIALIDAD PROFESIONAL
+//ESTADO
 portafolioRoute.post('/add/estado', async(req, res) => {
     const id_estado = uuidv4();
     const {
@@ -573,6 +948,15 @@ portafolioRoute.post('/add/estado', async(req, res) => {
 
 });
 
+//ITEM
+//MENSUALIDAD
+//PAIS
+//REGION
+//ROL
+//RUBRO
+//SERVICIO
+//TIPOSERVICIO
+//USUARIO
 
 
 
