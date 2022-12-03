@@ -854,26 +854,139 @@ portafolioRoute.post('/add/contrato', async(req, res) => {
 
 
 //DETALLESERVICIO
+
+
+portafolioRoute.post('/add/detalle-servicio', async(req, res) => {
+    const id_asesoria = uuidv4();
+    const extra = "No";
+
+
+    const {
+
+        detalle_asesoria,
+        fecha,
+        profesional,
+        tema,
+        ubicacion,
+        duracion,
+        id_tipo_servicio,
+        id_servicio,
+
+
+
+
+
+    } = req.body; 
+
+    portafolioModel.addDetalleServicio({
+        id_asesoria,
+        extra,
+        detalle_asesoria,
+        fecha,
+        profesional,
+        tema,
+        ubicacion,
+        duracion,
+        id_tipo_servicio,
+        id_servicio,
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_asesoria,
+                extra,
+                detalle_asesoria,
+                fecha,
+                profesional,
+                tema,
+                ubicacion,
+                duracion,
+                id_tipo_servicio,
+                id_servicio,
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
+
 //DETALLEUSUARIO
+
+portafolioRoute.post('/add/detalle-usuario', async(req, res) => {
+    const id_detalle_usuario = uuidv4();
+
+    const {
+
+        id_usuario,
+        id_empresa,
+
+
+    } = req.body; 
+
+    portafolioModel.addDetalle_usuario({
+        id_detalle_usuario,
+        id_usuario,
+        id_empresa,
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_detalle_usuario,
+                id_usuario,
+                id_empresa,
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
 //DIRECCION
 //EMPRESA
 
 portafolioRoute.post('/add/empresa', async(req, res) => {
     const id_empresa = uuidv4();
-    const id_rubro = uuidv4();
-    const id_contrato = uuidv4();
-    const id_servicio = uuidv4();
-    const id_detalle_usuario = uuidv4();
     const {
     
         //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
         nombre_empresa,
-        rut_empresa
+        rut_empresa,
+        id_rubro,
+        id_contrato,
+        id_servicio,
+        id_detalle_usuario,
         
 
     } = req.body; 
 
-    portafolioModel.addContrato({
+    portafolioModel.addEmpresa({
         id_empresa,
         nombre_empresa,
         rut_empresa,
