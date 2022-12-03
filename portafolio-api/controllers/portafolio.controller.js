@@ -862,7 +862,7 @@ portafolioRoute.post('/add/detalle-servicio', async(req, res) => {
 
 
     const {
-
+        
         detalle_asesoria,
         fecha,
         profesional,
@@ -880,9 +880,9 @@ portafolioRoute.post('/add/detalle-servicio', async(req, res) => {
 
     portafolioModel.addDetalleServicio({
         id_asesoria,
-        extra,
         detalle_asesoria,
         fecha,
+        extra,
         profesional,
         tema,
         ubicacion,
@@ -1043,8 +1043,8 @@ portafolioRoute.post('/add/empresa', async(req, res) => {
         rut_empresa,
         id_rubro,
         id_contrato,
-        id_servicio,
-        id_detalle_usuario,
+
+
         
 
     } = req.body; 
@@ -1055,8 +1055,7 @@ portafolioRoute.post('/add/empresa', async(req, res) => {
         rut_empresa,
         id_rubro,
         id_contrato,
-        id_servicio,
-        id_detalle_usuario,
+
     
 
     })
@@ -1071,8 +1070,8 @@ portafolioRoute.post('/add/empresa', async(req, res) => {
                 rut_empresa,
                 id_rubro,
                 id_contrato,
-                id_servicio,
-                id_detalle_usuario,
+
+
             
             },
         });
@@ -1087,6 +1086,58 @@ portafolioRoute.post('/add/empresa', async(req, res) => {
 
 
 //ESPECIALIDAD PROFESIONAL
+
+
+
+portafolioRoute.post('/add/especialidadprofesional', async(req, res) => {
+    const id_especialidad = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_especialidad,
+        detalle_especialidad,
+
+
+
+        
+
+    } = req.body; 
+
+    portafolioModel.addEspecialidadProfesional({
+        id_especialidad,
+        nombre_especialidad,
+        detalle_especialidad,
+
+    
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_especialidad,
+                nombre_especialidad,
+                detalle_especialidad,
+
+
+            
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
 //ESTADO
 portafolioRoute.post('/add/estado', async(req, res) => {
     const id_estado = uuidv4();
@@ -1523,7 +1574,6 @@ portafolioRoute.post('/add/tipo-servicio', async(req, res) => {
 
 portafolioRoute.post('/add/usuario', async(req, res) => {
     const id_usuario = uuidv4();
-    const id_estado_usuario = "ACTIVO";
     const {
     
         //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
@@ -1546,7 +1596,7 @@ portafolioRoute.post('/add/usuario', async(req, res) => {
 
     } = req.body; 
 
-    portafolioModel.addTipoServicio({
+    portafolioModel.addUsuario({
         id_usuario,
         nombre,
         apellido_p,
@@ -1560,7 +1610,6 @@ portafolioRoute.post('/add/usuario', async(req, res) => {
         rut_usuario,
         id_especialidad,
         id_rol,
-        id_estado_usuario,
         imagen
 
     })
@@ -1583,7 +1632,6 @@ portafolioRoute.post('/add/usuario', async(req, res) => {
                 rut_usuario,
                 id_especialidad,
                 id_rol,
-                id_estado_usuario,
                 imagen
             },
         });
@@ -1594,18 +1642,6 @@ portafolioRoute.post('/add/usuario', async(req, res) => {
     });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

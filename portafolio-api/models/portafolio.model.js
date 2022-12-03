@@ -148,23 +148,22 @@ const addUsuario = (portafolioData) => {
         rut_usuario,
         id_especialidad,
         id_rol,
-        id_estado_usuario,
         imagen
     } = portafolioData;
 
 
     // EN ESTE PUNTO ES IMPORTANTE HACER LA QUERY A LA TABLA CORRESPONDIENTE Y LOS VALORES CORRESPONDIENTES y tipos de datos.
-    const query = ` INSERT INTO [dbo].[usuario] (id_usuario, nombre, apellido_p, apellido_m, fecha_nacimiento, id_estado, correo, telefono, contrasena, id_direccion, rut_usuario, id_especialidad, id_rol, id_estado_usuario, imagen )
-                    VALUES (@id_usuario, @nombre, @apellido_p, @apellido_m, @fecha_nacimiento, @id_estado, @correo, @telefono, @contrasena, @id_direccion, @rut_usuario, @id_especialidad, @id_rol, @id_estado_usuario, @imagen )
+    const query = ` INSERT INTO [dbo].[usuario] (id_usuario, nombre, apellido_p, apellido_m, fecha_nacimiento, id_estado, correo, telefono, contrasena, id_direccion, rut_usuario, id_especialidad, id_rol, imagen )
+                    VALUES (@id_usuario, @nombre, @apellido_p, @apellido_m, @fecha_nacimiento, @id_estado, @correo, @telefono, @contrasena, @id_direccion, @rut_usuario, @id_especialidad, @id_rol,  @imagen )
                     
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_usuario', type: TYPES.NVarChar, value: id_usuario},
-                        {name: 'nombre', type: TYPES.Text, value: nombre},
-                        {name: 'apellido_p', type: TYPES.Date, value: apellido_p},
+                        {name: 'id_usuario', type: TYPES.UniqueIdentifier, value: id_usuario},
+                        {name: 'nombre', type: TYPES.NVarChar, value: nombre},
+                        {name: 'apellido_p', type: TYPES.NVarChar, value: apellido_p},
                         {name: 'apellido_m', type: TYPES.NVarChar, value: apellido_m},
-                        {name: 'fecha_nacimiento', type: TYPES.NVarChar, value: fecha_nacimiento},
+                        {name: 'fecha_nacimiento', type: TYPES.Date, value: fecha_nacimiento},
                         {name: 'id_estado', type: TYPES.NVarChar, value: id_estado},
                         {name: 'correo', type: TYPES.NVarChar, value: correo},
                         {name: 'telefono', type: TYPES.NVarChar, value: telefono},
@@ -173,7 +172,6 @@ const addUsuario = (portafolioData) => {
                         {name: 'rut_usuario', type: TYPES.NVarChar, value: rut_usuario},
                         {name: 'id_especialidad', type: TYPES.NVarChar, value: id_especialidad},
                         {name: 'id_rol', type: TYPES.NVarChar, value: id_rol},
-                        {name: 'id_estado_usuario', type: TYPES.NVarChar, value: id_estado_usuario},
                         {name: 'imagen', type: TYPES.NVarChar, value: imagen},
 
 
@@ -590,8 +588,10 @@ const allDetalle_servicio = () => {
 const addDetalleServicio = (portafolioData) => {
     const {
         id_asesoria,
+        detalle_asesoria,
         fecha,
         extra,
+        profesional,
         tema,
         ubicacion,
         duracion,
@@ -607,14 +607,14 @@ const addDetalleServicio = (portafolioData) => {
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_asesoria', type: TYPES.NVarChar, value: id_asesoria},
+                        {name: 'id_asesoria', type: TYPES.UniqueIdentifier, value: id_asesoria},
                         {name: 'detalle_asesoria', type: TYPES.Text, value: detalle_asesoria},
                         {name: 'fecha', type: TYPES.Date, value: fecha},
                         {name: 'extra', type: TYPES.NVarChar, value: extra},
                         {name: 'profesional', type: TYPES.NVarChar, value: profesional},
                         {name: 'tema', type: TYPES.NVarChar, value: tema},
                         {name: 'ubicacion', type: TYPES.NVarChar, value: ubicacion},
-                        {name: 'duracion', type: TYPES.NVarChar, value: duracion},
+                        {name: 'duracion', type: TYPES.Int, value: duracion},
                         {name: 'id_tipo_servicio', type: TYPES.NVarChar, value: id_tipo_servicio},
                         {name: 'id_servicio', type: TYPES.NVarChar, value: id_servicio},
 
@@ -718,7 +718,7 @@ const addDetalle_usuario = (portafolioData) => {
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_usuario', type: TYPES.NVarChar, value: id_usuario},
+                        {name: 'id_usuario', type: TYPES.UniqueIdentifier, value: id_usuario},
                         {name: 'id_empresa', type: TYPES.NVarChar, value: id_empresa},
                         {name: 'id_detalle_usuario', type: TYPES.NVarChar, value: id_detalle_usuario},
 
@@ -765,7 +765,7 @@ const updateDetalle_usuario  = (portafolioData) => {
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_empresa', type: TYPES.NVarChar, value: id_empresa},
+                        {name: 'id_empresa', type: TYPES.UniqueIdentifier, value: id_empresa},
 
                     ];
                     return execQuery.execWritedCommand(query, parameterers);
@@ -810,6 +810,7 @@ const allDireccion = () => {
 const addDireccion = (portafolioData) => {
     const {
         id_direccion,
+        calle,
         numero,
         id_comuna,
         id_pais,
@@ -821,13 +822,14 @@ const addDireccion = (portafolioData) => {
 
 
     // EN ESTE PUNTO ES IMPORTANTE HACER LA QUERY A LA TABLA CORRESPONDIENTE Y LOS VALORES CORRESPONDIENTES y tipos de datos.
-    const query = ` INSERT INTO [dbo].[direccion] (id_direccion, numero, id_comuna, id_pais, id_ciudad, id_region, observaciones  )
-                    VALUES (@id_direccion,  @numero, @id_comuna, @id_pais,  @id_ciudad, @id_region, @observaciones )
+    const query = ` INSERT INTO [dbo].[direccion] (id_direccion, calle, numero, id_comuna, id_pais, id_ciudad, id_region, observaciones  )
+                    VALUES (@id_direccion, @calle, @numero, @id_comuna, @id_pais,  @id_ciudad, @id_region, @observaciones )
                     
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_direccion', type: TYPES.NVarChar.UniqueIdentifier, value: id_direccion},
+                        {name: 'id_direccion', type: TYPES.UniqueIdentifier, value: id_direccion},
+                        {name: 'calle', type: TYPES.Int, value: calle},
                         {name: 'numero', type: TYPES.Int, value: numero},
                         {name: 'id_comuna', type: TYPES.NVarChar, value: id_comuna},
                         {name: 'id_pais', type: TYPES.NVarChar, value: id_pais},
@@ -880,7 +882,7 @@ const updateDireccion = (portafolioData) => {
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_direccion', type: TYPES.NVarChar, value: id_direccion},
+                        {name: 'id_direccion', type: TYPES.UniqueIdentifier, value: id_direccion},
                         {name: 'numero', type: TYPES.NVarChar, value: numero},
                         {name: 'observaciones', type: TYPES.NVarChar, value: observaciones},
 
@@ -925,28 +927,25 @@ const addEmpresa = (portafolioData) => {
         nombre_empresa,
         rut_empresa,
         id_rubro,
-        id_item,
         id_contrato,
-        id_servicio,
-        id_detalle_usuario
+       
         
     } = portafolioData;
 
 
     // EN ESTE PUNTO ES IMPORTANTE HACER LA QUERY A LA TABLA CORRESPONDIENTE Y LOS VALORES CORRESPONDIENTES y tipos de datos.
-    const query = ` INSERT INTO [dbo].[empresa] (id_empresa, nombre_empresa, rut_empresa, id_rubro,  id_contrato, id_servicio, id_detalle_usuario)
-                    VALUES (@id_empresa,  @nombre_empresa, @rut_empresa, @id_rubro,  @id_contrato, @id_servicio, @id_detalle_usuario)
+    const query = ` INSERT INTO [dbo].[empresa] (id_empresa, nombre_empresa, rut_empresa, id_rubro,  id_contrato )
+                    VALUES (@id_empresa,  @nombre_empresa, @rut_empresa, @id_rubro,  @id_contrato )
                     
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_empresa', type: TYPES.NVarChar, value: id_empresa},
+                        {name: 'id_empresa', type: TYPES.UniqueIdentifier, value: id_empresa},
                         {name: 'nombre_empresa', type: TYPES.NVarChar, value: nombre_empresa},
                         {name: 'rut_empresa', type: TYPES.NVarChar, value: rut_empresa},
                         {name: 'id_rubro', type: TYPES.NVarChar, value: id_rubro},
                         {name: 'id_contrato', type: TYPES.NVarChar, value: id_contrato},
-                        {name: 'id_servicio', type: TYPES.NVarChar, value: id_servicio},
-                        {name: 'id_detalle_usuario', type: TYPES.NVarChar, value: id_detalle_usuario},
+
 
 
                     ];
@@ -1049,7 +1048,7 @@ const addEspecialidadProfesional = (portafolioData) => {
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_especialidad', type: TYPES.UniqueIdentifier.NVarChar, value: id_especialidad},
+                        {name: 'id_especialidad', type: TYPES.UniqueIdentifier, value: id_especialidad},
                         {name: 'nombre_especialidad', type: TYPES.NVarChar, value: nombre_especialidad},
                         {name: 'detalle_especialidad', type: TYPES.NVarChar, value: detalle_especialidad},
 
@@ -1261,24 +1260,26 @@ const addItem= (portafolioData) => {
     const {
         id_item,
         nombre_item,
-        descripcion,
+        descripcion_item,
         id_estado,
-        fecha_agregado
+        fecha_agregado,
+        id_empresa
     } = portafolioData;
 
 
     // EN ESTE PUNTO ES IMPORTANTE HACER LA QUERY A LA TABLA CORRESPONDIENTE Y LOS VALORES CORRESPONDIENTES y tipos de datos.
-    const query = ` INSERT INTO [dbo].[item] (id_item, nombre_item, descripcion, id_estado, fecha_agregado )
-                    VALUES (@id_item,  @nombre_item, @descripcion, @id_estado, @fecha_agregado )
+    const query = ` INSERT INTO [dbo].[item] (id_item, nombre_item, descripcion_item, id_estado, fecha_agregado, id_empresa )
+                    VALUES (@id_item,  @nombre_item, @descripcion_item, @id_estado, @fecha_agregado, @id_empresa )
                     
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
                         {name: 'id_item', type: TYPES.UniqueIdentifier, value: id_item},
                         {name: 'nombre_item', type: TYPES.NVarChar, value: nombre_item},
-                        {name: 'descripcion', type: TYPES.Text, value: descripcion},
+                        {name: 'descripcion_item', type: TYPES.Text, value: descripcion_item},
                         {name: 'id_estado', type: TYPES.NVarChar, value: id_estado},
                         {name: 'fecha_agregado', type: TYPES.Date, value: fecha_agregado},
+                        {name: 'id_empresa', type: TYPES.NVarChar, value: id_empresa},
 
                     ];
                     return execQuery.execWritedCommand(query, parameterers);
@@ -1916,9 +1917,9 @@ const addServicio = (portafolioData) => {
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_servicio', type: TYPES.NVarChar, value: id_servicio},
+                        {name: 'id_servicio', type: TYPES.UniqueIdentifier, value: id_servicio},
                         {name: 'id_mensualidad', type: TYPES.NVarChar, value: id_mensualidad},
-                        {name: 'id_empresa', type: TYPES.Text, value: id_empresa},
+                        {name: 'id_empresa', type: TYPES.NVarChar, value: id_empresa},
 
                     ];
                     return execQuery.execWritedCommand(query, parameterers);
