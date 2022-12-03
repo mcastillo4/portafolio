@@ -969,6 +969,69 @@ portafolioRoute.post('/add/detalle-usuario', async(req, res) => {
 
 
 //DIRECCION
+
+portafolioRoute.post('/add/direccion', async(req, res) => {
+    const id_direccion = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        calle,
+        numero,
+        id_comuna,
+        id_pais,
+        id_ciudad,
+        id_region,
+        observaciones
+        
+
+    } = req.body; 
+
+    portafolioModel.addDireccion({
+        id_direccion,
+        calle,
+        numero,
+        id_comuna,
+        id_pais,
+        id_ciudad,
+        id_region,
+        observaciones
+    
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_direccion,
+                calle,
+                numero,
+                id_comuna,
+                id_pais,
+                id_ciudad,
+                id_region,
+                observaciones
+            
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
+
+
 //EMPRESA
 
 portafolioRoute.post('/add/empresa', async(req, res) => {
@@ -1062,15 +1125,475 @@ portafolioRoute.post('/add/estado', async(req, res) => {
 });
 
 //ITEM
+
+
+portafolioRoute.post('/add/item', async(req, res) => {
+    const id_item = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_item,
+        descripcion_item,
+        id_estado,
+        fecha_agregado,
+        id_empresa,
+
+        
+
+    } = req.body; 
+
+    portafolioModel.addItem({
+        id_item,
+        nombre_item,
+        descripcion_item,
+        id_estado,
+        fecha_agregado,
+        id_empresa,
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_item,
+                nombre_item,
+                descripcion_item,
+                id_estado,
+                fecha_agregado,
+                id_empresa,
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
 //MENSUALIDAD
+
+
+
+
+portafolioRoute.post('/add/mensualidad', async(req, res) => {
+    const id_mensualidad = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        id_estado,
+        observaciones
+
+
+        
+
+    } = req.body; 
+
+    portafolioModel.addMensualidad({
+        id_mensualidad,
+        id_estado,
+        observaciones
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_mensualidad,
+                id_estado,
+                observaciones
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
+
 //PAIS
+
+
+portafolioRoute.post('/add/pais', async(req, res) => {
+    const id_pais = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_pais,
+
+
+
+        
+
+    } = req.body; 
+
+    portafolioModel.addPais({
+        id_pais,
+        nombre_pais,
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_pais,
+                nombre_pais,
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
+
 //REGION
+
+
+portafolioRoute.post('/add/region', async(req, res) => {
+    const id_region = uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_region,
+
+
+
+        
+
+    } = req.body; 
+
+    portafolioModel.addRegion({
+        id_region,
+        nombre_region,
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_region,
+                nombre_region,
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
 //ROL
+
+
+
+portafolioRoute.post('/add/rol', async(req, res) => {
+    const id_rol= uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_rol,
+        detalle_rol
+
+
+
+        
+
+    } = req.body; 
+
+    portafolioModel.addRol({
+        id_rol,
+        nombre_rol,
+        detalle_rol
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_rol,
+                nombre_rol,
+                detalle_rol
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
 //RUBRO
+
+
+
+portafolioRoute.post('/add/rubro', async(req, res) => {
+    const id_rubro= uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_rubro,
+        descripcion_rubro
+
+
+
+
+    } = req.body; 
+
+    portafolioModel.addRubro({
+        id_rubro,
+        nombre_rubro,
+        descripcion_rubro
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_rubro,
+                nombre_rubro,
+                descripcion_rubro
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
 //SERVICIO
+
+
+
+
+portafolioRoute.post('/add/servicio', async(req, res) => {
+    const id_servicio= uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        id_mensualidad,
+        id_empresa
+
+
+
+
+    } = req.body; 
+
+    portafolioModel.addServicio({
+        id_servicio,
+        id_mensualidad,
+        id_empresa
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_servicio,
+                id_mensualidad,
+                id_empresa
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
+
+
+
 //TIPOSERVICIO
+
+
+
+portafolioRoute.post('/add/tipo-servicio', async(req, res) => {
+    const id_tipo_servicio= uuidv4();
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre_tipo_servicio,
+        detalle_tipo_servicio
+
+
+
+
+    } = req.body; 
+
+    portafolioModel.addTipoServicio({
+        id_tipo_servicio,
+        nombre_tipo_servicio,
+        detalle_tipo_servicio
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_tipo_servicio,
+                nombre_tipo_servicio,
+                detalle_tipo_servicio
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
+
+
+
+
+
+
+
+
+
+
 //USUARIO
 
+
+
+
+portafolioRoute.post('/add/usuario', async(req, res) => {
+    const id_usuario = uuidv4();
+    const id_estado_usuario = "ACTIVO";
+    const {
+    
+        //SE AGREGAN LOS CAMPOS QUE DEBEMOS MANDAR POR BODY
+        nombre,
+        apellido_p,
+        apellido_m,
+        fecha_nacimiento,
+        id_estado,
+        correo,
+        telefono,
+        contrasena,
+        id_direccion,
+        rut_usuario,
+        id_especialidad,
+        id_rol,
+        imagen
+
+
+
+
+    } = req.body; 
+
+    portafolioModel.addTipoServicio({
+        id_usuario,
+        nombre,
+        apellido_p,
+        apellido_m,
+        fecha_nacimiento,
+        id_estado,
+        correo,
+        telefono,
+        contrasena,
+        id_direccion,
+        rut_usuario,
+        id_especialidad,
+        id_rol,
+        id_estado_usuario,
+        imagen
+
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_usuario,
+                nombre,
+                apellido_p,
+                apellido_m,
+                fecha_nacimiento,
+                id_estado,
+                correo,
+                telefono,
+                contrasena,
+                id_direccion,
+                rut_usuario,
+                id_especialidad,
+                id_rol,
+                id_estado_usuario,
+                imagen
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
 
 
 
