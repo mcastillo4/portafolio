@@ -182,14 +182,14 @@ const addUsuario = (portafolioData) => {
 
 
 
-const getByIDUsuario= (id_usuario) => {
+const getByIDUsuario= (correo) => {
     const query =` SELECT * FROM [dbo].[usuario] 
-                    WHERE id_usuario = @id_usuario     
+                    WHERE correo = @correo     
                     `;
                     //FIN DE LA QUERY
 
                     const parameterers = [
-                        {name: 'id_usuario', type: TYPES.NVarChar, value: id_usuario},
+                        {name: 'correo', type: TYPES.NVarChar, value: correo},
                         
                         
                     ];
@@ -206,29 +206,44 @@ const getByIDUsuario= (id_usuario) => {
 const updateUsuario = (portafolioData) => {
     const {
         id_usuario,
+        nombre,
+        apellido_p,
+        apellido_m,
+        fecha_nacimiento,
         id_estado,
         correo,
         telefono,
         contrasena,
         id_direccion,
+        rut_usuario,
+        id_especialidad,
+        id_rol,
         imagen
     } = portafolioData;
 
 
     // EN ESTE PUNTO ES IMPORTANTE HACER LA QUERY A LA TABLA CORRESPONDIENTE Y LOS VALORES CORRESPONDIENTES
     const query = ` UPDATE[dbo].[usuario] 
-                    SET id_estado = @id_estado , correo = @correo , telefono = @telefono , contrasena = @contrasena , id_direccion = @id_direccion , imagen = @imagen
+                    SET nombre = @nombre , apellido_p = @apellido_p, apellido_m = @apellido_m, fecha_nacimiento = @fecha_nacimiento, id_estado = @id_estado,  correo = @correo , telefono = @telefono , contrasena = @contrasena , id_direccion = @id_direccion , rut_usuario = @rut_usuario, id_especialidad = @id_especialidad, id_rol = @id_rol, imagen = @imagen
                     WHERE id_usuario = @id_usuario         
                     `;
                     //FIN DE LA QUERY
                     const parameterers = [
-                        {name: 'id_usuario', type: TYPES.NVarChar, value: id_usuario},
-                        {name: 'id_estado', type: TYPES.Text, value: id_estado},
+                        {name: 'id_usuario', type: TYPES.UniqueIdentifier, value: id_usuario},
+                        {name: 'nombre', type: TYPES.NVarChar, value: nombre},
+                        {name: 'apellido_p', type: TYPES.NVarChar, value: apellido_p},
+                        {name: 'apellido_m', type: TYPES.NVarChar, value: apellido_m},
+                        {name: 'fecha_nacimiento', type: TYPES.Date, value: fecha_nacimiento},
+                        {name: 'id_estado', type: TYPES.NVarChar, value: id_estado},
                         {name: 'correo', type: TYPES.NVarChar, value: correo},
                         {name: 'telefono', type: TYPES.NVarChar, value: telefono},
                         {name: 'contrasena', type: TYPES.NVarChar, value: contrasena},
                         {name: 'id_direccion', type: TYPES.NVarChar, value: id_direccion},
+                        {name: 'rut_usuario', type: TYPES.NVarChar, value: rut_usuario},
+                        {name: 'id_especialidad', type: TYPES.NVarChar, value: id_especialidad},
+                        {name: 'id_rol', type: TYPES.NVarChar, value: id_rol},
                         {name: 'imagen', type: TYPES.NVarChar, value: imagen},
+
 
 
                     ];

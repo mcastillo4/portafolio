@@ -660,9 +660,9 @@ portafolioRoute.get('/all/tiposervicio/:id_tipo_servicio', async(req, res) => {
 });
 
 
-portafolioRoute.get('/all/usuario/:id_usuario', async(req, res) => {
-    const {id_usuario: id_usuario} = req.params;
-    portafolioModel.getByIDUsuario(id_usuario)
+portafolioRoute.get('/all/usuario/:correo', async(req, res) => {
+    const {correo: correo} = req.params;
+    portafolioModel.getByIDUsuario(correo)
     .then(data => {
         if(data.length > 0 ){
         res.status(200).json({data: { ...data[0]}});
@@ -1818,6 +1818,79 @@ portafolioRoute.put('/estado/:id_estado', async(req, res) => {
     });
 
 });
+
+
+
+
+
+
+portafolioRoute.put('/usuario/:id_usuario', async(req, res) => {
+    const {id_usuario: id_usuario} = req.params;
+    const {
+        
+        nombre,
+        apellido_p,
+        apellido_m,
+        fecha_nacimiento,
+        id_estado,
+        correo,
+        telefono,
+        contrasena,
+        id_direccion,
+        rut_usuario,
+        id_especialidad,
+        id_rol,
+        imagen,
+    } = req.body; 
+
+    portafolioModel.updateUsuario({
+        id_usuario,
+        nombre,
+        apellido_p,
+        apellido_m,
+        fecha_nacimiento,
+        id_estado,
+        correo,
+        telefono,
+        contrasena,
+        id_direccion,
+        rut_usuario,
+        id_especialidad,
+        id_rol,
+        imagen
+    })
+
+    .then((rowCount, more) =>{
+        res.status(200).json({
+            data:{
+                rowCount,
+                more,
+                id_usuario,
+                nombre,
+                apellido_p,
+                apellido_m,
+                fecha_nacimiento,
+                id_estado,
+                correo,
+                telefono,
+                contrasena,
+                id_direccion,
+                rut_usuario,
+                id_especialidad,
+                id_rol,
+                imagen
+                
+                
+            },
+        });
+    })
+
+    .catch(error => {
+        res.status(500).json({error});
+    });
+
+});
+
 
 
 
