@@ -844,7 +844,7 @@ const addDireccion = (portafolioData) => {
                     //FIN DE LA QUERY
                     const parameterers = [
                         {name: 'id_direccion', type: TYPES.UniqueIdentifier, value: id_direccion},
-                        {name: 'calle', type: TYPES.Int, value: calle},
+                        {name: 'calle', type: TYPES.NVarChar, value: calle},
                         {name: 'numero', type: TYPES.Int, value: numero},
                         {name: 'id_comuna', type: TYPES.NVarChar, value: id_comuna},
                         {name: 'id_pais', type: TYPES.NVarChar, value: id_pais},
